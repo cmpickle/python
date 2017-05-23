@@ -16,7 +16,7 @@ markers = json_data['markers']
 
 txtdoc = '.\house_check.txt'
 file = open(txtdoc, 'w+')
-print "I'mma scrape you good!"
+print("I'mma scrape you good!")
 
 listing = []
 for i in range(len(markers)):
@@ -49,7 +49,7 @@ smtpObj.quit()
 file.close()
 with open(txtdoc, 'r') as fin:
     data = fin.read().splitlines(True)
-begin = data.__len__() - 30 - 1
+begin = data.__len__() - 200 - 1
 if begin < 0:
 	begin = 0
 with open(txtdoc, 'w') as fout:
