@@ -7,7 +7,6 @@ from smtplib import SMTP
 txtdoc = 'C:\Users\%USERNAME%\Documents\ksl_check.txt'
 file = open(txtdoc, 'w+')
 
-# print "hello world"
 print "I'mma scrape you good!"
 
 # input the search url below
@@ -31,7 +30,7 @@ smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
 smtpObj.ehlo()
 smtpObj.starttls()
 
-# this python script uses a pii.txt that cotains:
+# This python script uses a pii.txt that cotains the following three values separated by a newline:
 # emailAddress (The email that you have opened for stmp access)
 # password (the email's login password)
 # destinationAddress (This could be another email or can be set to a phone number for email to sms ie: 8015555555@tmomail.net)
