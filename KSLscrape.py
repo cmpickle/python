@@ -2,41 +2,53 @@ from lxml import html
 import requests
 import smtplib
 from smtplib import SMTP
-txtdoc = 'C:\Users\cmpic_000\Documents\check.txt'
+
+# Create a text document to keep track of already seen listings
+txtdoc = 'C:\Users\%USERNAME%\Documents\ksl_check.txt'
 file = open(txtdoc, 'w+')
+
 # print "hello world"
 print "I'mma scrape you good!"
+
+# input the search url below
 page = requests.get('http://www.ksl.com/auto/search/index?keyword=&yearFrom=1996&yearTo=&mileageFrom=1000&mileageTo=90000&priceFrom=&priceTo=5000&zip=&miles=0&newUsed%5B%5D=All&page=0&sellerType=&postedTime=&titleType=Clean+Title&body=&transmission=&cylinders=&liters=&fuel=&drive=&numberDoors=&exteriorCondition=&interiorCondition=&cx_navSource=hp_search&search.x=67&search.y=11&search=Search+raquo%3B')
+
+# Specify the information to scrape from KSL
 tree = html.fromstring(page.content)
 titles = tree.cssselect("h2.title a.link")
 price = tree.cssselect("div.listing-detail-line.price")
 miles = tree.cssselect("div.listing-detail-line.mileage")
 urls = tree.xpath('/html/body/div/div/div/div/main/div/div/div/h2//a/@href')
+
+# Format the scraped information into a listing array
 listing = []
 for i in range(len(price)):
                 listing.append("%s %s %s" % (titles[i].text_content().strip(), price[i].text_content().strip(), miles[i].text_content().strip()))
 file.close()
  
+# Setup the smtp object  
 smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
 smtpObj.ehlo()
 smtpObj.starttls()
+
+# this python script uses a pii.txt that cotains:
+# emailAddress (The email that you have opened for stmp access)
+# password (the email's login password)
+# destinationAddress (This could be another email or can be set to a phone number for email to sms ie: 8015555555@tmomail.net)
 pii = open('pii.txt', 'r+')
 username = pii.readline()
 password = pii.readline()
 phoneAddress = pii.readline()
 pii.close()
 
+# Login to the smtp account
 smtpObj.login(username, password)
 
-# print listing
+# Send the listing from the smtp email account to the desination address
 write = False
 for car in listing:
-    # file = open(txtdoc, "r+")
-    # file.seek(0,2)
-    # print car
     with open(txtdoc, "a+") as file:
         for lines in file.read().split("\n"):
-            # print lines + " vs " + car
             if car == lines:
                 write = False
                 break
@@ -51,9 +63,13 @@ for car in listing:
     file.close()
 smtpObj.quit()
 file.close()
+
+# read the check file and if there are more than {max} records clear them out
+# this is to make sure the file doesn't get overly large
+max = 60
 with open(txtdoc, 'r') as fin:
     data = fin.read().splitlines(True)
-begin = data.__len__() - 30 - 1
+begin = data.__len__() - max - 1
 if begin < 0:
     begin = 0
 with open(txtdoc, 'w') as fout:
