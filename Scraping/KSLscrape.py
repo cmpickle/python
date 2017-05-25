@@ -20,7 +20,7 @@ file.close()
 smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
 smtpObj.ehlo()
 smtpObj.starttls()
-smtpObj.login('***REMOVED***', '***REMOVED***')
+smtpObj.login('autom8edpickle@gmail.com', 'Pickle42')
  
 # print listing
 write = False
@@ -39,7 +39,7 @@ for car in listing:
                                 if write:
                                                 file.seek(0,2)
                                                 file.write("\n" + car)
-                                                smtpObj.sendmail('***REMOVED***', '***REMOVED***', 'Subject: Cars \n%s' % car + 'http://ksl.com' +urls[listing.index(car)])
+                                                smtpObj.sendmail('autom8edpickle@gmail.com', '8016948594@tmomail.net', 'Subject: Cars \n%s' % car + 'http://ksl.com' +urls[listing.index(car)])
                                                 write = False
                 file.close()
 smtpObj.quit()

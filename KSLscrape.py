@@ -20,28 +20,35 @@ file.close()
 smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
 smtpObj.ehlo()
 smtpObj.starttls()
-smtpObj.login('***REMOVED***', '***REMOVED***')
- 
+pii = open('pii.txt', 'r+')
+username = pii.readline()
+password = pii.readline()
+phoneAddress = pii.readline()
+pii.close()
+
+smtpObj.login(username, password)
+
 # print listing
 write = False
 for car in listing:
-                file = open(txtdoc, "r+")
-                # file.seek(0,2)
-                # print car
-                with open(txtdoc, "a+") as file:
-                                for lines in file.read().split("\n"):
-                                                # print lines + " vs " + car
-                                                if car == lines:
-                                                                write = False
-                                                                break
-                                                else:
-                                                                write = True
-                                if write:
-                                                file.seek(0,2)
-                                                file.write("\n" + car)
-                                                smtpObj.sendmail('***REMOVED***', '***REMOVED***', 'Subject: Cars \n%s' % car + 'http://ksl.com' +urls[listing.index(car)])
-                                                write = False
-                file.close()
+    # file = open(txtdoc, "r+")
+    # file.seek(0,2)
+    # print car
+    with open(txtdoc, "a+") as file:
+        for lines in file.read().split("\n"):
+            # print lines + " vs " + car
+            if car == lines:
+                write = False
+                break
+            else:
+                write = True
+        if write:
+            file.seek(0, 2)
+            file.write("\n" + car)
+            smtpObj.sendmail(username, phoneAddress,
+                             'Subject: Cars \n%s' % car + 'http://ksl.com' + urls[listing.index(car)])
+            write = False
+    file.close()
 smtpObj.quit()
 file.close()
 with open(txtdoc, 'r') as fin:

@@ -22,11 +22,17 @@ listing = []
 for i in range(len(markers)):
                 listing.append("%s %s %s" % (markers[i]['id'], markers[i]['price'], 'https://utahrealestate.com/' + markers[i]['id']))
 file.close()
+
+pii = open('pii.txt', 'r+')
+username = pii.readline()
+password = pii.readline()
+phoneAddress = pii.readline()
+pii.close()
  
 smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
 smtpObj.ehlo()
 smtpObj.starttls()
-smtpObj.login('***REMOVED***', '***REMOVED***')
+smtpObj.login(username, password)
  
 # print listing
 write = False
@@ -42,7 +48,7 @@ for house in listing:
                                 if write:
                                                 file.seek(0,2)
                                                 file.write("\n" + house)
-                                                smtpObj.sendmail('***REMOVED***', '***REMOVED***', 'Subject: House \n%s' % house)
+                                                smtpObj.sendmail(username, phoneAddress, 'Subject: House \n%s' % house)
                                                 write = False
                 file.close()
 smtpObj.quit()
