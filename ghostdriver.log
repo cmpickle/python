@@ -1,0 +1,33 @@
+[INFO  - 2017-09-12T04:52:03.417Z] GhostDriver - Main - running on port 62396
+[INFO  - 2017-09-12T04:52:04.462Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-09-12T04:52:04.462Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - page.customHeaders:  - {}
+[INFO  - 2017-09-12T04:52:04.463Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-09-12T04:52:04.463Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 1f439f70-9776-11e7-8614-4d4bcd100196
+[ERROR - 2017-09-12T04:53:31.973Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - page.onError - msg: ReferenceError: Can't find variable: googletag
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-12T04:53:31.974Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - page.onError - stack:
+  global code (https://www.ksl.com/auto/search/index?newUsed%5B0%5D=All&titleType%5B0%5D=Clean+Title&keyword=&yearFrom=1996&yearTo=&mileageFrom=1000&mileageTo=90000&priceFrom=&priceTo=5000&zip=&miles=0&page=0&sellerType=&postedTime=&transmission=&cylinders=&liters=&fuel=&drive=&numberDoors=&exteriorCondition=&interiorCondition=&cx_navSource=hp_search&search_x=67&search_y=11:3039)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-12T04:53:32.058Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - page.onError - msg: ReferenceError: Can't find variable: googletag
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-12T04:53:32.058Z] Session [1f439f70-9776-11e7-8614-4d4bcd100196] - page.onError - stack:
+  (anonymous function) (https://www.ksl.com/auto/js/ads/GptAdsLoader.js:43)
+  each (https://www.ksl.com/auto/js/react/dist/common.js:1)
+  each (https://www.ksl.com/auto/js/react/dist/common.js:1)
+  loadGptAdIntoSlot (https://www.ksl.com/auto/js/ads/GptAdsLoader.js:32)
+  (anonymous function) (https://www.ksl.com/auto/js/ads/searchGptAds.js:97)
+  forEach (:0)
+  enter (https://www.ksl.com/auto/js/ads/searchGptAds.js:92)
+  (anonymous function) (https://www.ksl.com/auto/js/responsive/breakpoints.js:95)
+  process (https://www.ksl.com/auto/js/responsive/breakpoints.js:13)
+  evaluate (https://www.ksl.com/auto/js/responsive/breakpoints.js:131)
+  (anonymous function) (https://www.ksl.com/auto/js/ads/searchGptAds.js:137)
+  l (https://www.ksl.com/auto/js/react/dist/common.js:1)
+  fireWith (https://www.ksl.com/auto/js/react/dist/common.js:1)
+  ready (https://www.ksl.com/auto/js/react/dist/common.js:1)
+  p (https://www.ksl.com/auto/js/react/dist/common.js:1)
+
+  phantomjs://platform/console++.js:263 in error

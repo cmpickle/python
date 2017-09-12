@@ -2,22 +2,28 @@ from lxml import html
 import requests
 import smtplib
 from smtplib import SMTP
+import os
+from selenium import webdriver
 
 # Create a text document to keep track of already seen listings
-txtdoc = 'C:\Users\%USERNAME%\Documents\ksl_check.txt'
+txtdoc = os.path.expanduser('~\Documents\ksl_check.txt')
 file = open(txtdoc, 'w+')
 
 print "I'mma scrape you good!"
 
 # input the search url below
-page = requests.get('http://www.ksl.com/auto/search/index?keyword=&yearFrom=1996&yearTo=&mileageFrom=1000&mileageTo=90000&priceFrom=&priceTo=5000&zip=&miles=0&newUsed%5B%5D=All&page=0&sellerType=&postedTime=&titleType=Clean+Title&body=&transmission=&cylinders=&liters=&fuel=&drive=&numberDoors=&exteriorCondition=&interiorCondition=&cx_navSource=hp_search&search.x=67&search.y=11&search=Search+raquo%3B')
+# page = requests.get('http://www.ksl.com/auto/search/index?keyword=&yearFrom=1996&yearTo=&mileageFrom=1000&mileageTo=90000&priceFrom=&priceTo=5000&zip=&miles=0&newUsed%5B%5D=All&page=0&sellerType=&postedTime=&titleType=Clean+Title&body=&transmission=&cylinders=&liters=&fuel=&drive=&numberDoors=&exteriorCondition=&interiorCondition=&cx_navSource=hp_search&search.x=67&search.y=11&search=Search+raquo%3B', headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"})
+driver = webdriver.PhantomJS()
+driver.get('http://www.ksl.com/auto/search/index?keyword=&yearFrom=1996&yearTo=&mileageFrom=1000&mileageTo=90000&priceFrom=&priceTo=5000&zip=&miles=0&newUsed%5B%5D=All&page=0&sellerType=&postedTime=&titleType=Clean+Title&body=&transmission=&cylinders=&liters=&fuel=&drive=&numberDoors=&exteriorCondition=&interiorCondition=&cx_navSource=hp_search&search.x=67&search.y=11&search=Search+raquo%3B')
+
+page = driver.page_source
 
 # Specify the information to scrape from KSL
-tree = html.fromstring(page.content)
-titles = tree.cssselect("h2.title a.link")
+tree = html.fromstring(page)
+titles = tree.cssselect("div.title a.link")
 price = tree.cssselect("div.listing-detail-line.price")
 miles = tree.cssselect("div.listing-detail-line.mileage")
-urls = tree.xpath('/html/body/div/div/div/div/main/div/div/div/h2//a/@href')
+urls = tree.xpath('/html/body/div/div/div/div/main/div/div/div/div//a/@href')
 
 # Format the scraped information into a listing array
 listing = []
