@@ -45,3 +45,9 @@ AndroidStudio = auto.getWindow('Android Studio')
 if AndroidStudio != None:
 	AndroidStudio.move(-8, -8)
 	AndroidStudio.maximize()
+
+print("moving Gogland....")
+gogland = auto.getWindow('Gogland')
+if gogland != None:
+	gogland.move(-8, -8)
+	gogland.maximize()
