@@ -25,8 +25,16 @@ print("moving Powershell....")
 powershell = auto.getWindow('Windows Powershell')
 if powershell != None:
 	powershell.restore()
+	powershell.move(0, 0)
 	powershell.move(2880, 0)
 	powershell.resize(960, 515)
+
+print("moving Bash....")
+bash = auto.getWindow('cmpickle@Jarvis')
+if bash != None:
+	bash.restore()
+	bash.move(1912, 0)
+	bash.resize(980, 1048)
 
 print("moving Visual Studio Code....")
 vsCode = auto.getWindow('Visual Studio Code')
@@ -36,7 +44,7 @@ if vsCode != None:
 
 print("moving Visual Studio....")
 vs= auto.getWindow('Microsoft Visual Studio')
-if vs!= None:
+if vs != None:
 	vs.move(0, 0)
 	vs.maximize()
 
