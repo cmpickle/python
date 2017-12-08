@@ -19,15 +19,15 @@ slack = auto.getWindow('Slack')
 if slack != None:
 	slack.restore()
 	slack.move(2880, 0)
-	slack.resize(960, 520)
+	slack.resize(960, 525)
 
 print("moving Powershell....")
-powershell = auto.getWindow('Windows Powershell')
+powershell = auto.getWindow('Windows PowerShell')
 if powershell != None:
 	powershell.restore()
 	powershell.move(0, 0)
-	powershell.move(2880, 0)
-	powershell.resize(960, 515)
+	powershell.move(2878, 525)
+	powershell.resize(970, 525)
 
 print("moving Bash....")
 bash = auto.getWindow('cmpickle@Jarvis')
